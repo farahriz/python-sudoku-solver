@@ -26,24 +26,30 @@ class Grid:
     self.board = board
   
   def print(self):
+    """Print board without any borders
+    """
     for row in self.board:
       print(row)
-    print()
-  
-  def print_nice_grid(self):
-    0 0 0 | 0 0 0 | 0 0 0
-    0 0 0 | 0 0 0 | 0 0 0
-    0 0 0 | 0 0 0 | 0 0 0
-    - - -   - - -   - - -
-    0 0 0 | 0 0 0 | 0 0 0
-    0 0 0 | 0 0 0 | 0 0 0
-    0 0 0 | 0 0 0 | 0 0 0
-    - - -   - - -   - - -
-    0 0 0 | 0 0 0 | 0 0 0
-    0 0 0 | 0 0 0 | 0 0 0
-    0 0 0 | 0 0 0 | 0 0 0
 
-    print(neat_grid)
+  def print_board(self):
+    """Print the board with borders for each 3x3 in the sudoku grid
+    """
+    num_rows = len(self.board)
+    num_cols = len(self.board[0])
+    
+    for i in range(num_rows):
+      if i % 3 == 0 and i != 0:
+        print("- - - - - - - - - - - -")
+      
+      for j in range(num_cols):
+        if j % 3 == 0 and j != 0:
+          print(" | ", end="")
+        
+        if j == 8:
+          print(self.board[i][j])
+        else:
+          number = str(self.board[i][j])
+          print("{} ".format(number), end='')
 
   def set_row(self, row_index, new_row):
     ind = row_index - 1
@@ -56,8 +62,4 @@ class Grid:
 
 grid = Grid()
 grid.print()
-grid.set_column(7, [1,2,3,4,5,6,7,8,9])
-grid.print()
-
-
-1. p
+grid.print_board()
