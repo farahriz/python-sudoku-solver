@@ -1,4 +1,4 @@
-board = [
+test_board = [
     [7,8,0,4,0,0,1,2,0],
     [6,0,0,0,7,5,0,0,9],
     [0,0,0,6,0,1,0,7,8],
@@ -23,6 +23,9 @@ class Grid:
       [0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0]
     ]
+    # self.board = board
+  
+  def set_board(self, board):
     self.board = board
   
   def print(self):
@@ -108,5 +111,6 @@ class Grid:
     return True
 
 grid = Grid()
+grid.set_board(test_board)
 grid.print()
 grid.print_board()
