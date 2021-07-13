@@ -72,6 +72,41 @@ class Grid:
         if self.board[i][j] == 0:
           return (i, j)
 
+  def is_valid(self, num, position):
+    """Checks that a number can be used in a grid position by checking if it already appears in the corresponding row, column, or subgrid
+
+    Args:
+        num (Int): The number being checked to fit in the space
+        position (Tuple): The position of the space in the grid, given by two coordinates (row_number, column_number)
+
+    Returns:
+        Boolean: True or False depending on if the number is valid for the space or not
+    """
+
+    num_rows = len(self.board)
+    num_cols = len(self.board[0])
+    
+    # Check row for other numbers
+    for i in range(num_cols):
+      if self.board[position[0]][i] == num and position[1] != i:
+        return False
+
+    # Check column for other numbers
+    for i in range(num_rows):
+      if self.board[i][position[1]] == num and position[0] != i:
+        return False
+    
+    # Check 3z3 subsquare
+    box_x = position[1] // 3
+    box_y = position[0] // 3
+
+    for i in range(box_y * 3, box_y*3 + 3):
+      for j in range(box_x * 3, box_x*3 + 3):
+        if self.board[i][j] == num and (i, j) != position:
+          return False
+    
+    return True
+
 grid = Grid()
 grid.print()
 grid.print_board()
