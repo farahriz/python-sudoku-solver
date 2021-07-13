@@ -59,6 +59,18 @@ class Grid:
     ind = col_index - 1
     for i, row in enumerate(self.board):
       row[ind] = new_col[i]
+  
+  def find_empty(self):
+    """Loop through the board and find an empty square.
+    Empty squares are designated by 0
+    """
+    num_rows = len(self.board)
+    num_cols = len(self.board[0])
+
+    for i in range(num_rows):
+      for j in range(num_cols):
+        if self.board[i][j] == 0:
+          return (i, j)
 
 grid = Grid()
 grid.print()
